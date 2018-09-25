@@ -7,8 +7,6 @@ Route::get('/', "IndexController@index")->name('home');
 Route::get('/novosti', "NewsController@index");
 Route::get('/novosti/{slug}', "NewsController@show");
 
-//Route::get('/home', 'HomeController@index');
-
 Route::get('/kontakty', function() {
     $meta['title'] = 'Контакты';
     $meta['message'] = 'Контакты';
@@ -34,7 +32,6 @@ Route::get('/centry', function() {
     return view('tuition-centers')->with(['title' => 'Центры обучения']);
 })->name('tuition-centers');
 
-
 // account
 Route::middleware(['auth'])->group(function () {
 
@@ -43,28 +40,27 @@ Route::middleware(['auth'])->group(function () {
     })->name('tutor-dashboard');
     
     Route::get('/user/profile', 'UserController@profile')->name('tutor-profile');
-    
     Route::post('/user/profile', 'UserController@update');
     
-    Route::get('/user/schedule', function() {
-        return view('user.schedule')->with(['title' => 'Расписание']);
-    })->name('tutor-schedule');
-
-    Route::get('/user/schedule', function() {
-        return view('user.schedule')->with(['title' => 'Расписание']);
-    })->name('tutor-schedule');
-
-    Route::get('/user/favorites', function() {
-        return view('user.favorites')->with(['title' => 'Избранное']);
-    })->name('tutor-favorites');
-
-    Route::get('/user/invoices', function() {
-        return view('user.invoices')->with(['title' => 'Счета']);
-    })->name('tutor-invoices');
-
-    Route::get('/user/upgrade', function() {
-        return view('user.upgrade')->with(['title' => 'Тарифы']);
-    })->name('tutor-upgrade');
+//    Route::get('/user/schedule', function() {
+//        return view('user.schedule')->with(['title' => 'Расписание']);
+//    })->name('tutor-schedule');
+//
+//    Route::get('/user/schedule', function() {
+//        return view('user.schedule')->with(['title' => 'Расписание']);
+//    })->name('tutor-schedule');
+//
+//    Route::get('/user/favorites', function() {
+//        return view('user.favorites')->with(['title' => 'Избранное']);
+//    })->name('tutor-favorites');
+//
+//    Route::get('/user/invoices', function() {
+//        return view('user.invoices')->with(['title' => 'Счета']);
+//    })->name('tutor-invoices');
+//
+//    Route::get('/user/upgrade', function() {
+//        return view('user.upgrade')->with(['title' => 'Тарифы']);
+//    })->name('tutor-upgrade');
     
     // ADMIN
     
@@ -82,43 +78,3 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/user', function() {
     return view('registration')->with(['title' => 'Вход/Регистрация']);
 })->name('user');
-
-Route::get('/admin/do/add-subject', function() {
-    
-    $subjects = [
-        'Математика',
-        'Физика',
-        'Биология',
-        'Химия',
-        'Программирование',
-        'Информатика',
-        'Всемирная история',
-        'История Беларуси',
-        'Обществоведение',
-        'Изобразительное искусство',
-        'Музыка',
-        'Дошкольное образование',
-        'Начальная школа',
-    ];
-    
-    $results = App\Subject::all()->toArray();
-    
-    $subjectsExists = [];
-    foreach ($results as $row) {
-        array_push($subjectsExists, $row['name']);
-    }
-    
-    foreach ($subjects as $subject) { 
-        
-        if (!in_array($subject, $subjectsExists)) {
-            array_push($subjectsExists, $subject);
-            
-            $newSubject = new App\Subject();
-            $newSubject->name = $subject;
-            $newSubject->slug = \App\Helpers\SlugHelper::str2url($subject);
-            $newSubject->save();
-        }
-    }
-    echo 'complete';
-    
-});
