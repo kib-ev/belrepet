@@ -4,24 +4,6 @@ Auth::routes();
 
 Route::get('/', "IndexController@index")->name('home');
 
-Route::get('file', function() {
-    return view('file');
-});
-
-Route::post('upload', function() {
-    
-    if (\Illuminate\Support\Facades\Input::hasFile('file')):
-        
-        $file = \Illuminate\Support\Facades\Input::file('file');
-        $file->move('images/uploads', $file->getClientOriginalName());
-        
-        echo '<img src="/images/uploads/'.$file->getClientOriginalName() .'" />';
-        
-    endif;
-    
-    echo 'hello';
-});
-
 Route::get('/novosti', "NewsController@index");
 Route::get('/novosti/{slug}', "NewsController@show");
 
