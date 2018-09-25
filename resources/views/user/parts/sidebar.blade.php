@@ -20,42 +20,6 @@
                         <span>Настройки профиля</span>
                     </a>
                 </li>
-                <li class="hidden todo {{ Route::currentRouteName() == 'tutor-schedule' ? 'tg-active' : '' }}">
-                    <a href="{{ route('tutor-schedule') }}">
-                        <i class="fa fa-clock-o"></i>
-                        <span>Мой режим работы</span>
-                    </a>
-                </li>
-                <li class="hidden todo {{ Route::currentRouteName() == 'tutor-favorites' ? 'tg-active' : '' }}">
-                    <a href="{{ route('tutor-favorites') }}">
-                        <i class="fa fa-heart"></i>
-                        <span>Избранное</span>
-                    </a>
-                </li>
-                <li class="hidden todo tg-successmessage {{ Route::currentRouteName() == 'tutor-invoices' ? 'tg-active' : '' }}">
-                    <a href="{{ route('tutor-invoices') }}">
-                        <i class="fa fa-clone"></i>
-                        <span>Счета</span>
-                    </a>
-                </li>
-                <li class="hidden todo tg-errormessage">
-                    <a href="dashboard-tutor-upgradepackage.html">
-                        <i class="fa fa-arrow-up"></i>
-                        <span>Тарифы</span>
-                    </a>
-                </li>
-                <li class="hidden todo">
-                    <a href="dashboard-tutor-security-settings.html">
-                        <i class="fa fa-gears"></i>
-                        <span>Безопасность</span>
-                    </a>
-                </li>
-                <li class="hidden todo">
-                    <a href="dashboard-tutor-privacy-settings.html">
-                        <i class="fa fa-eye"></i>
-                        <span>Конфиденциальность</span>
-                    </a>
-                </li>
                 <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out"></i>
