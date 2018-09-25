@@ -135,11 +135,8 @@ Route::get('/admin/do/add-subject', function() {
             $newSubject->name = $subject;
             $newSubject->slug = \App\Helpers\SlugHelper::str2url($subject);
             $newSubject->save();
-            
         }
-        
     }
-    
     echo 'complete';
     
 });
