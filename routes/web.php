@@ -4,10 +4,6 @@ Auth::routes();
 
 Route::get('/', "IndexController@index")->name('home');
 
-Route::get('file', function() {
-    return view('file');
-});
-
 Route::post('upload', function() {
     
     if (\Illuminate\Support\Facades\Input::hasFile('file')):
