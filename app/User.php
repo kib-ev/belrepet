@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -65,9 +66,9 @@ class User extends Authenticatable
     
     public function avatar() {
         if ($this->avatar) {
-            return '/uploads/user'.$this->id.'/'.$this->avatar;
+            return URL::to('/').'/uploads/user'.$this->id.'/'.$this->avatar;
         } else {
-            return '/images/blank-profile.png';
+            return URL::to('/').'/images/blank-profile.png';
         }
     }
     

@@ -32,11 +32,7 @@
                             <div class="tg-widgetcontent">
                                 <figure class="tg-tuitioncenterdp">
                                     <a href="#">
-                                        @if($user->avatar)
                                         <img src="{{$user->avatar()}}" alt="image description">
-                                        @else
-                                        <img src="/images/blank-profile.png" alt="no avatar">
-                                        @endif
                                     </a>
                                     <figcaption class="hidden todo">
                                         <a class="tg-usericon tg-iconfeatured" href="#">
