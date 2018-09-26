@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use App\User;
 
 class UserController extends Controller
 {
@@ -27,6 +27,7 @@ class UserController extends Controller
         
         return view('user.profile', compact('user'))->with($meta);
     }
+
     public function update(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -68,58 +69,44 @@ class UserController extends Controller
                 foreach ($data as $key => $value) {
                     $user[$key] = $value;
                 }
+                $user->active = false;
                 $user->save();
-                $meta['title'] = 'Профиль';
 
-                return view('user/profile', compact('user'))->with($meta);
+                return redirect('user/profile')->withErrors(['xxx']); // todo message when save
             }
         }
-        /*$data = request()->all();
-        $user = Auth::user();
-        
-        
-        $user->subjects = $subjectsString;
-        
-        //unset($data['avatar']);
-        print_r($request);
-        If(Input::hasFile('file')){
-            $file = Input::file('file');
-
-            $destinationPath = public_path(). '/uploads/';
-            $filename = $file->getClientOriginalName();
-
-            $file->move($destinationPath, $filename);
-
-            print_r($filename);
-            //echo '<img src="uploads/'. $filename . '"/>';
-
-            /*$user = ImageTest::create([
-                'filename' => $filename,
-            ]);*/
-       /* }
-
-        $user->update($data);
-        
-        $meta['title'] = 'Профиль';*/
-        
-		return view('user/profile');
+		return view('user/profile'); // todo
     }
     
+    public function tutor($id) {
+        $user = \App\User::where('joinas', 'tutor')->where('id', $id)->first();
+        
+        if (!$user) { // todo
+            abort(404);
+        } else if ($user->active == false && Auth::user() == null) {
+            abort(404);
+        }  else if ($user->active == false && Auth::user() != null) {
+            if (Auth::user()->joinas != 'admin') {
+                abort(404);
+            }
+        }
+        return view('public.tutor.show', compact('user'))->with(['title' => 'Репетитор']);
+    }
+
     public function tutors() {
         
         $data = request()->all();
 
-        $filterIsActive = FALSE;
+        $filterIsActive = false;
         
         $tutors = User::where('joinas', 'tutor')
-                ->where('active', 'true'); // todo
+                ->where('active', true); // todo
         
         $filter = new \App\Helpers\FilterHelper($tutors, $data);
-        
 
         $ages = [];
         if (isset($data['age'])) {
-            $filterIsActive = TRUE;
+            $filterIsActive = true;
             $ages = explode('-', str_replace('+', '', $data['age']));
             $tutors = $filter->filterAge();
         }
@@ -129,9 +116,18 @@ class UserController extends Controller
         $tutors = $tutorsAll->paginate(5);
         $tutors->appends(Input::except('page'));
         
-        
         return view('tutors', compact('tutors', 'tutorsAll', 'data', 'ages', 'filterIsActive', 'filter'))
             ->with(['title' => 'Наши Репетиторы']);
     }
 
+    public function update_user($id) {
+        $data = request()->all();
+        $user = User::find($id);
+        $user->active = $data['active'];
+        $user->update();
+
+        return redirect(route('admin_users'));
+
+        // dd($user);
+    }
 }

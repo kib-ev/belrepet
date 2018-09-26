@@ -18,6 +18,20 @@
                 <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
                     
                     @include('user/parts/tg-pagehead', $user)
+
+                    <div class="tg-alertmessages">
+                        @if($errors)
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-success tg-alertmessage fade in">
+                                    <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> -->
+                                    <i class="fa fa-check"></i>
+                                    <span><strong>Сохранено.</strong> Ваш профиль отправлен на модерацию. Обычно это занимает не более 48 часов.</span>
+                                </div>
+                                <!-- <div>{{ $error }}</div> -->
+                            @endforeach
+                        @endif
+                    </div>
+
                     <form id="profile-form" action="" method="post" class="tg-formtheme" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="{{ $user->id }}" autocomplete="off">
                         

@@ -18,15 +18,9 @@ Route::get('/usloviya-i-polozheniya', function() {
     return view('public.rules');
 });
 
+Route::get('/repetitor/{id}','UserController@tutor' )->name('tutor_page');
 Route::get('/repetitory', 'UserController@tutors')->name('tutors');
 
-Route::get('/repetitor/{id}', function($id) {
-    $user = \App\User::where('joinas', 'tutor')->where('id', $id)->first();
-    if(!$user) {
-        return redirect(route('tutors'));
-    }
-    return view('public.tutor.show', compact('user'))->with(['title' => 'Репетитор']);
-})->name('tutor_page');
 
 Route::get('/centry', function() {
     return view('tuition-centers')->with(['title' => 'Центры обучения']);
@@ -65,7 +59,8 @@ Route::middleware(['auth'])->group(function () {
     // ADMIN
     
     Route::get('/admin', 'AdminController@dashboard');
-    Route::get('/admin/users', 'AdminController@users');
+    Route::get('/admin/users', 'AdminController@users')->name('admin_users');
+    Route::patch('/admin/user/{id}', 'UserController@update_user')->name('update_user');
     
     Route::get('/admin/news', 'NewsController@index');
     Route::get('/admin/news/{id}/edit', 'NewsController@edit');

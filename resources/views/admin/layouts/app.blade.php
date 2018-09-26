@@ -35,8 +35,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="/admin/news">News</a></li>
-                        <li><a class="nav-link" href="/admin/users">Users</a></li>
+                        <li><a class="nav-link" href="{{ url('/') }}/admin/news">News</a></li>
+                        <li><a class="nav-link" href="{{ url('/') }}/admin/users">Users</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
