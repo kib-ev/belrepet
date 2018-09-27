@@ -156,7 +156,7 @@ class FilterHelper {
                 array_push($ids, str_replace('subject', '', $key));
             }
         }
-        return \App\Subject::whereIn('id', $ids)->get();
+        return \App\Entry::whereIn('id', $ids)->get();
     }
     
     public function removeSubjectLink($id) {

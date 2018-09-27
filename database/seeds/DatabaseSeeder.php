@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        $this->call(SubjectsTableSeeder::class);
+
+        // References
+        DB::unprepared(file_get_contents('database/sql/references.sql'));
+        // $this->command->info('Marques table seeded!');
     }
 }

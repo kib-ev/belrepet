@@ -193,7 +193,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         
-                                        @foreach(App\Subject::all() as $subject)
+                                        @foreach(App\Entry::where('name', 'subject')->get() as $subject)
                                         <input type="checkbox" <?php echo (in_array($subject->id, explode(';', $user->subjects))) ? 'checked' : ''; ?> name="subjects[]" value="{{$subject->id}}" id="subject1"><label for="subject{{$subject->id}}">{{$subject->name}}</label><br>
                                         @endforeach
 											

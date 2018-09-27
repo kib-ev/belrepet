@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Entry;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -77,10 +78,11 @@ class User extends Authenticatable
     }
     
     public function subjects() {
-        $subjects = Subject::whereIn('id', explode(';', $this->subjects));
-        return $subjects;
+        $entries = Entry::where('reference_id', '1')->whereIn('id', explode(';', $this->subjects));;
+        return $entries;
     }
     public function subjectsArray() {
+
         $subjectsArray = [];
         foreach ($this->subjects()->get() as $subject) {
             array_push($subjectsArray, $subject->name);
