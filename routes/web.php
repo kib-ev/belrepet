@@ -35,7 +35,15 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/user/profile', 'UserController@profile')->name('tutor-profile');
     Route::post('/user/profile', 'UserController@update');
+
+    Route::get('/user/offer', function() {
+
+        $meta['title'] = 'Публичная оферта';
+
+        return view('user.offer')->with($meta);
+    })->name('user-offer');
     
+
 //    Route::get('/user/schedule', function() {
 //        return view('user.schedule')->with(['title' => 'Расписание']);
 //    })->name('tutor-schedule');

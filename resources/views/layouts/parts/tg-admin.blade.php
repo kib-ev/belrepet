@@ -147,7 +147,7 @@
                                                      <input type="checkbox" id="notrobot" name="notrobot" value="human">
                                                      <label for="notrobot">Я не робот</label>
                                                  </span>
-                                                <a class="tg-refreshcaptcha" href="#"><img src="/images/icons/icon-02.jpg" alt="image description"></a>
+                                                <a class="tg-refreshcaptcha" href="#"><img src="{{ url('/') }}/images/icons/icon-02.jpg" alt="image description"></a>
                                             </div>
                                         </div>
                                     </div>

@@ -14,10 +14,16 @@
                         <span>Обзор</span>
                     </a>
                 </li>
-                <li  style="border-top: none;" class="{{ Route::currentRouteName() == 'tutor-profile' ? 'tg-active' : '' }}">
+                <li style="border-top: none;" class="{{ Route::currentRouteName() == 'tutor-profile' ? 'tg-active' : '' }}">
                     <a href="{{ route('tutor-profile') }}">
                         <i class="fa fa-user"></i>
                         <span>Настройки профиля</span>
+                    </a>
+                </li>
+                <li class="{{ Route::currentRouteName() == 'user-offer' ? 'tg-active' : '' }}">
+                    <a href="{{ route('user-offer') }}">
+                        <i class="fa fa-file"></i>
+                        <span>Публичная оферта</span>
                     </a>
                 </li>
                 <li>
@@ -33,7 +39,7 @@
         </nav>
     </div>
     <div class="tg-widgetdashboard">
-        <a class="tg-customerviewpage" target="_blank" href="//belrepet.by/repetitor/{{$user->id}}">
+        <a class="tg-customerviewpage" target="_blank" href="//belrepet.by/repetitor/{{ Auth::user()->id }}">
             <i class="fa fa-tv"></i>
             <span>Как видят меня другие?</span>
         </a>
