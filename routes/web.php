@@ -67,6 +67,12 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/admin/news/{id}/edit', 'NewsController@update');
     Route::get('/admin/news/add', "NewsController@create");
     Route::put('/admin/news/add', "NewsController@store");
+
+    Route::get('/admin/references', "ReferenceController@index");
+    Route::get('/admin/references/show/{id}', "ReferenceController@show")->name('admin_show_reference');
+
+    Route::put('/admin/entries/store', "EntryController@store")->name('admin_entry_store');
+
 });
 
 

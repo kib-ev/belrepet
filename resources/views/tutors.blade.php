@@ -153,7 +153,7 @@
                                         <div class="tg-widgetcontent">
                                             <div class="form-group">
                                                 <div class="tg-filterscrollbar tg-themescrollbar tg-subjectcheckbox">
-                                                    @foreach(\App\Subject::all() as $subject)
+                                                    @foreach(\App\Entry::where('reference_id', '1')->get() as $subject)
                                                         <span class="tg-checkbox">
                                                             <input type="checkbox" id="subject{{$subject->id}}" name="subject{{$subject->id}}" value="true" <?php echo $filter->isSubjectActive($subject->id) ? 'checked' : '' ?>>
                                                             <label for="subject{{$subject->id}}">{{$subject->name}}</label>
