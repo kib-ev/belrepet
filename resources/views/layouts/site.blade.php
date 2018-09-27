@@ -49,14 +49,14 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                     <strong class="tg-logo">
-                        <a href="{{ url('/') }}"><img src="/images/logo.png" alt="image description"></a>
+                        <a href="{{ url('/') }}"><img src="{{ url('/images/logo.png') }}" alt=""></a><!-- todo alt -->
                     </strong>
                     <div class="tg-navigationarea">
                         <nav id="tg-nav" class="tg-nav">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                         data-target="#tg-navigation" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="sr-only">Навигация</span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -69,81 +69,13 @@
                                     </li>
                                     <li class="{{ Route::currentRouteName() == 'tutors' ? 'tg-active' : '' }}">
                                         <a href="{{ route('tutors') }}">Каталог репетиторов</a>
-                                        {{--<ul class="tg-dropdownmenu">--}}
-                                        {{--<li><a href="jobs.html">Job</a></li>--}}
-                                        {{--<li><a href="job-detail.html">Job Detail</a></li>--}}
-                                        {{--</ul>--}}
                                     </li>
-                                   {{--<li class="{{ Route::currentRouteName() == 'tuition-centers' ? 'tg-active' : '' }}">--}}
-                                        {{--<a href="{{ route('tuition-centers') }}">Центры обучения</a>--}}
-                                        {{--<ul class="tg-dropdownmenu">--}}
-                                        {{--<li><a href="tutors.html">tutor</a></li>--}}
-                                        {{--<li><a href="tutor-detail.html">tutor Detail</a></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</li>--}}
-                                    <li class="{{ Route::currentRouteName() == 'news' ? 'tg-active' : '' }}">
+                                    <li class="{{ Route::currentRouteName() == 'public_news' ? 'tg-active' : '' }}">
                                         <a href="{{ url('/novosti') }}">Новости</a>
                                     </li>
                                     <li class="{{ Route::currentRouteName() == 'contactus' ? 'tg-active' : '' }}">
-                                        <a href="/kontakty">Контакты</a>
+                                        <a href="{{ url('/kontakty') }}"">Контакты</a>
                                     </li>
-                                    {{--<li class="tg-hasdropdown">--}}
-                                    {{--<a href="javascript:void(0);">Tuition Centre</a>--}}
-                                    {{--<ul class="tg-dropdownmenu">--}}
-                                    {{--<li><a href="tuition-center.html">Tuition Centre</a></li>--}}
-                                    {{--<li><a href="tutioncentre-detail.html">Tuition center Detail</a></li>--}}
-                                    {{--<li><a href="job-detail-by-tutioncenter.html">job Detail by Tuition center</a></li>--}}
-                                    {{--</ul>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="tg-hasdropdown">--}}
-                                    {{--<a href="javascript:void(0);">dashboard</a>--}}
-                                    {{--<ul class="tg-dropdownmenu">--}}
-                                    {{--<li class="tg-hasdropdown">--}}
-                                    {{--<a href="javascript:void(0);">dashboard tuition center</a>--}}
-                                    {{--<ul class="tg-dropdownmenu">--}}
-                                    {{--<li><a href="dashboard-tuition-centres.html">dash board tuition center</a></li>--}}
-                                    {{--<li><a href="dashboard-tuitions-team.html">team</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-centres-post-job.html">post job</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-manage-jobs.html">manage jobs</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-favorites-listing.html">favorites list</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-Schedule.html">schedule</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-invoices.html">invoices</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-profile-setting.html">profile setting</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-centres-academics-settings.html">academic settings</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-centres-privacy-settings.html">privacy setting</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-security-setting.html">security setting</a></li>--}}
-                                    {{--<li><a href="dashboard-tuition-upgrade-package.html">upgrade package</a></li>--}}
-                                    {{--</ul>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="tg-hasdropdown">--}}
-                                    {{--<a href="javascript:void(0);">dashboard tutor</a>--}}
-                                    {{--<ul class="tg-dropdownmenu">--}}
-                                    {{--<li><a href="dashboard-tutor.html">dashboard tutor</a></li>--}}
-                                    {{--<li><a href="dashboardtutor-favorites-listing.html">favorites list</a></li>--}}
-                                    {{--<li><a href="dashboardtutor-myschedule.html">schedule</a></li>--}}
-                                    {{--<li><a href="dashboard-tutor-invoices.html">invoices</a></li>--}}
-                                    {{--<li><a href="dashboard-tutor-profile-settings.html">profile setting</a></li>--}}
-                                    {{--<li><a href="dashboard-tutor-privacy-settings.html">privacy setting</a></li>--}}
-                                    {{--<li><a href="dashboard-tutor-security-settings.html">security setting</a></li>--}}
-                                    {{--<li><a href="dashboard-tutor-upgradepackage.html">upgrade package</a></li>--}}
-                                    {{--</ul>--}}
-                                    {{--</li>--}}
-                                    {{--</ul>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="tg-hasdropdown">--}}
-                                    {{--<a href="javascript:void(0);">--}}
-                                    {{--<i class="hidden-xs fa fa-navicon"></i>--}}
-                                    {{--<span class="hidden-lg hidden-md hidden-sm">Pages</span>--}}
-                                    {{--</a>--}}
-                                    {{--<ul class="tg-dropdownmenu">--}}
-                                    {{--<li><a href="job-detail-by-sutudent.html">job Detail by Student</a></li>--}}
-                                    {{--<li><a href="how-it-works.html">How it works?</a></li>--}}
-                                    {{--<li><a href="contactus.html">Contact</a></li>--}}
-                                    {{--<li><a href="404error.html">404</a></li>--}}
-                                    {{--<li><a href="news-grid.html">news</a></li>--}}
-                                    {{--<li><a href="news-detail.html">news detail</a></li>--}}
-                                    {{--</ul>--}}
-                                    {{--</li>--}}
                                 </ul>
                             </div>
                         </nav>
@@ -168,7 +100,7 @@
                 <div class="row">
                     <div class="tg-fcols">
                         <div class="tg-fcol">
-                            <strong class="tg-logo"><a href="#"><img src="/images/logo.png" alt="image description"></a></strong>
+                            <strong class="tg-logo"><a href="#"><img src="{{ url('/images/logo.png') }}" alt=""></a></strong>   
                             <div class="tg-description">
                                 <p>На сайте представлены резюме только проверенных специалистов с опытом работы. Здесь вы найдете репетитора для дошкольников, школьников, абитуриентов, студентов и взрослых. Консультации по выбору подходящего вам преподавателя – бесплатны. Вы оплачиваете только занятия самому репетитору.</p>
                             </div>
