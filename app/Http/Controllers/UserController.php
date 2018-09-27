@@ -69,7 +69,7 @@ class UserController extends Controller
                 foreach ($data as $key => $value) {
                     $user[$key] = $value;
                 }
-                $user->active = false;
+                $user->active = 0;
                 $user->save();
 
                 return redirect('user/profile')->withErrors(['xxx']); // todo message when save
