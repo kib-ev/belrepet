@@ -71,10 +71,10 @@
                                         <div class="tg-radiobox">
                                             <span class="tg-joinustitle">Хочу зарегистрироваться как:</span>
                                             <div class="tg-joinus">
-                                                <span class="tg-radio">
+                                                <!--<span class="tg-radio">
                                                     <input type="radio" id="student" name="joinas" value="student">
                                                      <label for="student">ученик</label>
-                                                 </span>
+                                                 </span>-->
                                                 <span class="tg-radio">
                                                      <input type="radio" id="tutor" name="joinas" value="tutor" checked>
                                                      <label for="tutor">репетитор</label>
@@ -202,7 +202,7 @@
         <div class="tg-user">
             <div class="dropdown tg-dropdown">
                 <figure class="tg-adminpic">
-                    <a href="#"><img src="/images/icons/icon-01.png" alt="image description"></a>
+                    <a href="{{ url('/user/dashboard') }}"><img src="{{ url('/images/icons/icon-01.png') }}" alt=""></a>
                 </figure>
                 <button id="tg-usermenu" class="tg-usermenu tg-btndropdown" type="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -215,58 +215,16 @@
                         <strong>{{date('H:i')}}</strong>
                     </time>
                     <ul>
-<!--                        <li>
-                            <a href="/user/profile">
+                        <li>
+                            <a href="{{ url('/user/dashboard') }}">
                                 <i class="fa fa-line-chart"></i>
                                 <span>Личный кабинет</span>
                             </a>
-                        </li>-->
-                        <li>
+                        </li>
+                        <!--<li>
                             <a href="{{ route('tutor-profile') }}">
                                 <i class="fa fa-user"></i>
                                 <span>Настройки профиля</span>
-                            </a>
-                        </li>
-<!--                        <li>
-                            <a href="#">
-                                <i class="fa fa-list"></i>
-                                <span>Мой режим работы</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-clock-o"></i>
-                                <span>My Schedules</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-heart"></i>
-                                <span>Favorites Listing</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-clone"></i>
-                                <span>Invoices</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-arrow-up"></i>
-                                <span>Upgrade Package</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-gears"></i>
-                                <span>Security Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-eye"></i>
-                                <span>Privacy Settings</span>
                             </a>
                         </li>-->
                         <li>
@@ -283,5 +241,5 @@
                 </div>
             </div>
         </div>
-        @endguest
+    @endguest
 </div>

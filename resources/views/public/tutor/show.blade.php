@@ -31,9 +31,7 @@
                         <div class="tg-widget tg-widgettutionimage">
                             <div class="tg-widgetcontent">
                                 <figure class="tg-tuitioncenterdp">
-                                    <a href="#">
-                                        <img src="{{$user->avatar()}}" alt="image description">
-                                    </a>
+                                    <img src="{{$user->avatar()}}" alt="image description">
                                     <figcaption class="hidden todo">
                                         <a class="tg-usericon tg-iconfeatured" href="#">
                                             <em class="tg-usericonholder">
@@ -220,7 +218,7 @@
                                 <li><a href="#">1509 view</a></li>
                             </ul>
                         </div>
-                        <div class="hidden adress">{{$user->mapAddress()}}</div>
+                        <div class="hidden address">{{ $user->mapAddress() }}</div>
                         <div id="map" class="tg-jobsmap" style="position: relative; overflow: hidden;"></div>
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                         <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>    
@@ -228,10 +226,10 @@
                             $(document).ready(function() {
                                 ymaps.ready(init);
                                 var myMap;
-                                var adreses = [];
-                                $('.adress').each(function() {
+                                var address = [];
+                                $('.address').each(function() {
                                     if ($(this).text()) {
-                                        adreses.push($(this).text());
+                                        address.push($(this).text());
                                     }
                                 });
 
@@ -249,17 +247,15 @@
                                         balloonContentFooter: ymaps.geolocation.region
                                     };
 
-
-
                                     myMap.controls.add(
                                         new ymaps.control.ZoomControl()
                                     );
 
-                                    hello();
+                                    addToMap();
                                 }
 
-                                function hello() {
-                                    adreses.map(value => {
+                                function addToMap() {
+                                    address.map(value => {
                                         console.log(value);
                                         ymaps.geocode(value).then(function (res) {  
                                             myMap.geoObjects.add(res.geoObjects.get(0));

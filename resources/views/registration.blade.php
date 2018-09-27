@@ -155,7 +155,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
+                                    <div class="col-xs-12 hidden todo">
                                         <div class="tg-alreadyhaveaccount">
                                             <h3>Уже есть аккаунт? <a href="#">Войти.</a></h3>
                                         </div>

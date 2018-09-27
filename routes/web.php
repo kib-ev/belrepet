@@ -4,8 +4,8 @@ Auth::routes();
 
 Route::get('/', "IndexController@index")->name('home');
 
-Route::get('/novosti', "NewsController@index");
-Route::get('/novosti/{slug}', "NewsController@show");
+Route::get('/novosti', "NewsController@index")->name('public_news');
+Route::get('/novosti/{slug}', "NewsController@show")->name('public_news_item');
 
 Route::get('/kontakty', function() {
     $meta['title'] = 'Контакты';
@@ -84,6 +84,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/user', function() {
+Route::get('/registration', function() {
     return view('registration')->with(['title' => 'Вход/Регистрация']);
-})->name('user');
+})->name('registration');

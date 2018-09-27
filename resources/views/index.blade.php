@@ -6,7 +6,7 @@
 		*************************************-->
 <div id="tg-homebanner" class="tg-homebanner tg-haslayout">
     <figure class="tg-bannerbg">
-        <img src="/images/banner/img-01.jpg" alt="image description">
+        <img src="{{ url('/images/banner/img-01.jpg') }}" alt="image description">
     </figure>
     <div class="tg-bannercontent">
         <div class="container">
@@ -14,8 +14,9 @@
                 <div class="col-sm-12 col-xs-12">
                     <form class="tg-formsearch">
                         <fieldset>
-                            <figure class="tg-bannerimg hidden-sm hidden-xs"><img src="/images/knigi.png"
-                                                                                  alt="image description"></figure>
+                            <figure class="tg-bannerimg hidden-sm hidden-xs">
+                                <img src="{{ url('/images/knigi.png') }}" alt="">
+                            </figure>
                             <div class="tg-searchfields">
 
                                 <h3 class="title">Подобрать репетитора?</h3>
@@ -58,9 +59,9 @@
                                         <h2>Вы репетитор?</h2>
                                         <div class="tg-description">
                                             <p>Регистрируйтесь в нашем сервисе</p>
-                                            <p>совершенно бесплатно! <a href="#">Регистрация »</a></p>
+                                            <p>совершенно бесплатно! <a href="{{ route('registration') }}">Регистрация »</a></p>
                                         </div>
-                                        <img src="/images/banner/img-03.png" alt="image description">
+                                        <img src="{{ url('/images/banner/img-03.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +146,7 @@
             Statistics Start
     *************************************-->
     <section class="tg-main-section tg-haslayout tg-parallaximg" data-appear-top-offset="600" data-parallax="scroll"
-             data-image-src="/images/parallax/bgparallax-02.jpg">
+             data-image-src="{{ url('/images/parallax/bgparallax-02.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="tg-statisticscounters">
@@ -191,8 +192,8 @@
                         @foreach($users as $user)
                         <div class="tg-tutor">
                             <figure class="tg-tutordp">
-                                <a href="{{$user->link()}}"><img src="{{$user->avatar()}}" height="120" width="120"
-                                                 alt="image description"></a>
+                                <a href="{{ $user->link() }}"><img src="{{$user->avatar()}}" height="120" width="120"
+                                                 alt=""></a>
                                 <figcaption style="opacity: 0;" class="todo">
                                     <a class="tg-usericon tg-iconfeatured" href="{{$user->link()}}">
                                         <em class="tg-usericonholder">
@@ -251,7 +252,7 @@
             Student Review Start
     *************************************-->
     <section class="tg-main-section tg-haslayout tg-parallaximg" data-appear-top-offset="600" data-parallax="scroll"
-             data-image-src="/images/parallax/bgparallax-03.jpg">
+             data-image-src="{{ url('/images/parallax/bgparallax-03.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
@@ -310,22 +311,22 @@
                     </div>
                     <div id="tg-reviewerdpslider" class="tg-reviewerdpslider tg-reviewerdp">
                         <div class="item">
-                            <figure><img src="/images/thumbnails/img-01.jpg" alt="image description"></figure>
+                            <figure><img src="{{ url('/images/thumbnails/img-01.jpg') }}" alt=""></figure>
                         </div>
                         <div class="item">
-                            <figure><img src="/images/thumbnails/img-02.jpg" alt="image description"></figure>
+                            <figure><img src="{{ url('/images/thumbnails/img-02.jpg') }}" alt=""></figure>
                         </div>
                         <div class="item">
-                            <figure><img src="/images/thumbnails/img-03.jpg" alt="image description"></figure>
+                            <figure><img src="{{ url('/images/thumbnails/img-03.jpg') }}" alt=""></figure>
                         </div>
                         <div class="item">
-                            <figure><img src="/images/thumbnails/img-04.jpg" alt="image description"></figure>
+                            <figure><img src="{{ url('/images/thumbnails/img-04.jpg') }}" alt=""></figure>
                         </div>
                         <div class="item">
-                            <figure><img src="/images/thumbnails/img-05.jpg" alt="image description"></figure>
+                            <figure><img src="{{ url('/images/thumbnails/img-05.jpg') }}" alt=""></figure>
                         </div>
                         <div class="item">
-                            <figure><img src="/images/thumbnails/img-06.jpg" alt="image description"></figure>
+                            <figure><img src="{{ url('/images/thumbnails/img-06.jpg') }}" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -352,17 +353,18 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="tg-latestnews">
                             <article class="tg-post">
-                                <figure class="tg-postimg"><a href="/novosti/{{$item->slug}}"><img src="{{$item->preview}}"
-                                                                            alt="{{$item->name}}"></a></figure>
+                                <figure class="tg-postimg">
+                                    <a href="{{ $item->link() }}"><img src="{{ url($item->preview) }}" alt="{{$item->name}}"></a>
+                                </figure>
                                 <div class="tg-postcontent">
                                     <div class="tg-posttitle">
-                                        <h3><a href="/novosti/{{$item->slug}}">{{$item->name}}</a></h3>
+                                        <h3><a href="{{ $item->link() }}">{{$item->name}}</a></h3>
                                     </div>
                                     <ul class="tg-metadata">
                                       
                                         <li>
                                             <time datetime="{{ date('Y-m-d', strtotime($item->created_at)) }}">
-                                                <a href="/novosti/{{$item->slug}}">{{ date('d.m.Y', strtotime($item->created_at)) }}</a>
+                                                <a href="{{ $item->link() }}">{{ $item->date() }}</a>
                                             </time>
                                         </li>
                                     </ul>

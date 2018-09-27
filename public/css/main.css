@@ -2841,7 +2841,7 @@ blockquote q{font:400 italic 20px/28px 'Open Sans', Arial, Helvetica, sans-serif
 .tg-contactmapinfo{
 	width:100%;
 	float:left;
-	padding:80px 0;
+	padding: 80px 0px 0px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
