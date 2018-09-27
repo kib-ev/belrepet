@@ -153,7 +153,7 @@ jQuery(document).ready(function() {
 	function ageRangeslider(){
 		jQuery("#tg-agerangeslider").slider({
 			range: true,
-			min: 0,
+			min: 18,
 			max: 100,
 			values: [ jQuery("#tg-agerangeslider").data('min'), jQuery("#tg-agerangeslider").data('max') ],
 			slide: function( event, ui ) {

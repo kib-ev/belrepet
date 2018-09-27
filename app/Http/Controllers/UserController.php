@@ -94,29 +94,16 @@ class UserController extends Controller
     }
 
     public function tutors() {
-        
         $data = request()->all();
-
-        $filterIsActive = false;
-        
-        $tutors = User::where('joinas', 'tutor')
-                ->where('active', true); // todo
-        
+        $tutors = User::where('joinas', 'tutor')->where('active', true);
         $filter = new \App\Helpers\FilterHelper($tutors, $data);
 
-        $ages = [];
-        if (isset($data['age'])) {
-            $filterIsActive = true;
-            $ages = explode('-', str_replace('+', '', $data['age']));
-            $tutors = $filter->filterAge();
-        }
-        
-        $tutorsAll = $filter->tutors();
+        $tutorsAll = $filter->filteredTutors();
         
         $tutors = $tutorsAll->paginate(5);
         $tutors->appends(Input::except('page'));
         
-        return view('tutors', compact('tutors', 'tutorsAll', 'data', 'ages', 'filterIsActive', 'filter'))
+        return view('tutors', compact('tutorsAll', 'tutors', 'data', 'filter'))
             ->with(['title' => 'Наши Репетиторы']);
     }
 
@@ -127,7 +114,5 @@ class UserController extends Controller
         $user->update();
 
         return redirect(route('admin_users'));
-
-        // dd($user);
     }
 }

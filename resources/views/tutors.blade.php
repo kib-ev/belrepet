@@ -46,7 +46,6 @@
                                     </div>
 
                                 </div>-->
-                                 
                                
                                 @if ($filter->isActive && false)
                                     <div class="tg-activefilters" style="margin-bottom: 12px;">
@@ -56,7 +55,6 @@
                                     </div>
                                    
                                     <div class="tg-filters">
-                                        
                                         
                                         @foreach($filter->activeSubjects() as $activeSubject)
                                             <a class="tg-btnfilter" href="{{$filter->removeSubjectLink($activeSubject->id)}}">
@@ -88,7 +86,6 @@
                                         </a>
                                         @endisset
 
-                                        
                                         <a class="tg-btnclearall" href="/repetitory">Очистить</a>
                                     </div>
                                    
@@ -97,7 +94,7 @@
                                  <div class="tg-result"><h4 style="padding: 0px;">Найдено {{$tutors->total()}} репетиторов</h4></div>
                                 
                                 @foreach($tutors as $user)
-                                <div class="tg-tutor" data-map-address="{}">
+                                <div class="tg-tutor">
                                     <figure class="tg-tutordp">
                                         <a href="{{$user->link()}}"><img src="{{$user->avatar()}}" height="120" width="120" alt="image description"></a>
                                         <figcaption style="opacity: 0;">

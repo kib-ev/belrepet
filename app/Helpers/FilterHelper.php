@@ -12,18 +12,40 @@ class FilterHelper {
     public $priceFrom = 0;
     public $priceTo = 30;
     
-    public $ageFrom = 0;
+    public $ageFrom = 18;
     public $ageTo = 100;
     
     public $activityFrom = 0;
-    public $activityTo = 100;
+    public $activityTo = 50;
     
-    public $gender = 'both';
+    public $gender = 'both'; // default
     
     public function __construct($tutors, $data) {
         $this->tutors = $tutors;
         $this->data = $data;
     }
+
+    public function filteredTutors() {
+        
+        if(count($this->activeSubjects()) > 0) {
+            $this->filterSubject();
+        }
+        
+        if(isset($this->data['price'])) {
+            $this->filterPrice();
+        }
+        
+        if(isset($this->data['age'])) {
+            $this->filterAge();
+        }
+        
+        if(isset($this->data['gender'])) {
+            $this->filterGender();
+        }
+        
+        return $this->tutors;
+    }
+
     
     // remove get params from url
     public function reduce_query($kill_params) {
@@ -157,28 +179,4 @@ class FilterHelper {
         }
         return in_array($id, $ids);
     }
-    
-    public function tutors() {
-        
-        if(count($this->activeSubjects()) > 0) {
-            $this->filterSubject();
-        }
-        
-        if(isset($this->data['price'])) {
-            $this->filterPrice();
-        }
-        
-        if(isset($this->data['age'])) {
-            $this->filterAge();
-        }
-        
-        if(isset($this->data['gender'])) {
-            $this->filterGender();
-        }
-        
-        return $this->tutors;
-    }
-    
-    
-
 }
