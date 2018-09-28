@@ -2400,7 +2400,7 @@ blockquote q{font:400 italic 20px/28px 'Open Sans', Arial, Helvetica, sans-serif
 .tg-filterscrollbar{
 	width: 100%;
 	float: left;
-	height: 125px;
+	max-height: 125px;
 	overflow: hidden;
 	margin: 0 0 10px;
 }

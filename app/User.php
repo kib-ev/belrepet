@@ -78,9 +78,26 @@ class User extends Authenticatable
     }
     
     public function subjects() {
-        $entries = Entry::where('reference_id', '1')->whereIn('id', explode(';', $this->subjects));;
+        $entries = Entry::where('reference_id', '1')->whereIn('id', explode(';', $this->subjects));
         return $entries;
     }
+
+    public function ranks() {
+        $entries = Entry::where('reference_id', '2')->whereIn('id', explode(';', $this->tutor_rank));;
+        return $entries;
+    }
+
+    public function workplaces() {
+        $entries = Entry::where('reference_id', '3')->whereIn('id', explode(';', $this->tutor_workplaces));
+        return $entries;
+    }
+
+    public function lessons() {
+        $entries = Entry::where('reference_id', '4')->whereIn('id', explode(';', $this->lessons_type));
+        return $entries;
+    }
+
+
     public function subjectsArray() {
 
         $subjectsArray = [];

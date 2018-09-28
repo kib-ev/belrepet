@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+define('ALL', '%');
+
 class FilterHelper {
     
     public $isActive = FALSE;
@@ -19,17 +21,19 @@ class FilterHelper {
     public $activityTo = 50;
     
     public $gender = 'both'; // default
-    
+
     public function __construct($tutors, $data) {
         $this->tutors = $tutors;
         $this->data = $data;
     }
 
     public function filteredTutors() {
-        
-        if(count($this->activeSubjects()) > 0) {
-            $this->filterSubject();
-        }
+
+        $this->filterByEntryField('tutor_rank');
+        $this->filterByEntryField('subjects');
+        $this->filterByEntryField('tutor_workplaces');
+        $this->filterByEntryField('lessons_type');
+        $this->filterByEntryField('lessons_program');
         
         if(isset($this->data['price'])) {
             $this->filterPrice();
@@ -101,19 +105,18 @@ class FilterHelper {
         
         return $this->tutors;
     }
-    
-    public function filterSubject() {
-        $this->isActive = TRUE;
+
+    public function filterByEntryField($paramName) {
         
-        $subjects = $this->activeSubjects();
+        $activeEntries = $this->activeEntries($paramName);
         
-        foreach($subjects as $subject) {
+        foreach($activeEntries as $entry) {
             
-            $this->tutors->where(function ($query) use ($subject) {
-                $query->where('subjects', 'LIKE', $subject->id)
-                    ->orWhere('subjects', 'LIKE', $subject->id.';%')
-                    ->orWhere('subjects', 'LIKE', '%;'.$subject->id.';%')
-                    ->orWhere('subjects', 'LIKE', '%;'.$subject->id);
+            $this->tutors->where(function ($query) use ($paramName, $entry) {
+                $query->where($paramName, 'LIKE', $entry->id)
+                    ->orWhere($paramName, 'LIKE', $entry->id.';%')
+                    ->orWhere($paramName, 'LIKE', '%;'.$entry->id.';%')
+                    ->orWhere($paramName, 'LIKE', '%;'.$entry->id);
             });
         }
     }
@@ -136,7 +139,7 @@ class FilterHelper {
         }
     }
     
-    public function filterGender() {
+    public function filterGender() { // todo add to references
         $this->isActive = TRUE;
         
         $this->gender = $this->data['gender'];
@@ -148,33 +151,28 @@ class FilterHelper {
         }
     }
     
-    public function activeSubjects() {
+    private function activeEntries($paramName) {
         $ids = [];
         foreach ($this->data as $key => $value) {
-           
-            if (strpos($key, 'subject') !== false && $value == true) {
-                array_push($ids, str_replace('subject', '', $key));
+            if (strpos($key, $paramName) !== false && $value == true) {
+                array_push($ids, str_replace($paramName, '', $key));
             }
         }
         return \App\Entry::whereIn('id', $ids)->get();
     }
     
-    public function removeSubjectLink($id) {
-        
-        $url = url()->full();
-        
-        $param = 'subject'.$id.'=true';
-        
-        return str_replace([$param.'&', $param], '', $url);
-    }
+    // public function removeSubjectLink($id) {
+    //     $url = url()->full();
+    //     $param = 'subject'.$id.'=true';
+    //     return str_replace([$param.'&', $param], '', $url);
+    // }
     
-    public function isSubjectActive($id) {
-        
+    public function isSelected($paramName, $id) {
         $ids = [];
         foreach ($this->data as $key => $value) {
            
-            if (strpos($key, 'subject') !== false && $value == true) {
-                array_push($ids, str_replace('subject', '', $key));
+            if (strpos($key, $paramName) !== false && $value == true) {
+                array_push($ids, str_replace($paramName, '', $key));
             }
         }
         return in_array($id, $ids);

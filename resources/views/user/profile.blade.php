@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" name="birth" class="form-control" placeholder="Дата рождения: 30-01-1970" value="{{$user->birth}}" autocomplete="off">
+                                        <input type="text" name="birth" class="form-control" placeholder="Дата рождения: ГГГГ-ММ-ДД" value="{{$user->birth}}" autocomplete="off">
                                     </div>
                                 </div>
                                 
@@ -169,7 +169,8 @@
                         @if($user->joinas == 'tutor')
                         <fieldset>
                             <div class="row">
-                                 <div class="col-sm-12 col-xs-12">
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
                                     <h4>Образование</h4>
                                 </div>
                                 <div class="col-sm-12 col-xs-12">
@@ -177,7 +178,8 @@
                                         <textarea name="education" class="form-control editor" placeholder="Образование и должность">{{$user->education}}</textarea>
                                     </div>
                                 </div>
-                                 <div class="col-sm-12 col-xs-12">
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
                                     <h4>Год начала деятельности (стаж)</h4>
                                 </div>
                                 <div class="col-md-4 col-sm-12 col-xs-12">
@@ -186,21 +188,63 @@
                                     </div>
                                 </div>
                                 <div class="clear"></div>
-                                
-                                 <div class="col-sm-12 col-xs-12">
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
+                                    <h4>Статус</h4>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        @foreach(\App\Entry::where('reference_id', '2')->get() as $rank)
+                                        <input type="checkbox" <?php echo (in_array($rank->id, explode(';', $user->tutor_rank))) ? 'checked' : ''; ?> name="tutor_rank[]" value="{{  $rank->id }}" id="rank{{ $rank->id }}"><label for="rank{{ $rank->id }}">{{ $rank->name }}</label><br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
                                     <h4>Предметы</h4>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        
                                         @foreach(\App\Entry::where('reference_id', '1')->get() as $subject)
-                                        <input type="checkbox" <?php echo (in_array($subject->id, explode(';', $user->subjects))) ? 'checked' : ''; ?> name="subjects[]" value="{{$subject->id}}" id="subject1"><label for="subject{{$subject->id}}">{{$subject->name}}</label><br>
+                                        <input type="checkbox" <?php echo (in_array($subject->id, explode(';', $user->subjects))) ? 'checked' : ''; ?> name="subjects[]" value="{{$subject->id}}" id="subject{{$subject->id}}"><label for="subject{{$subject->id}}">{{$subject->name}}</label><br>
                                         @endforeach
-											
                                     </div>
                                 </div>
-                                
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
+                                    <h4>Место проведения занятий</h4>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        @foreach(\App\Entry::where('reference_id', '3')->get() as $place)
+                                        <input type="checkbox" <?php echo (in_array($place->id, explode(';', $user->tutor_workplaces))) ? 'checked' : ''; ?> name="tutor_workplaces[]" value="{{  $place->id }}" id="place{{ $place->id }}"><label for="place{{ $place->id }}">{{ $place->name }}</label><br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
+                                    <h4>Вид занятий</h4>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        @foreach(\App\Entry::where('reference_id', '4')->get() as $item)
+                                        <input type="checkbox" <?php echo (in_array($item->id, explode(';', $user->lessons_type))) ? 'checked' : ''; ?> name="lessons_type[]" value="{{  $item->id }}" id="lessons-type{{ $item->id }}"><label for="lessons-type{{ $item->id }}">{{ $item->name }}</label><br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                 <!-- ------------------------------ -->
                                  <div class="col-sm-12 col-xs-12">
+                                    <h4>Программа занятий</h4>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        @foreach(\App\Entry::where('reference_id', '5')->get() as $item)
+                                        <input type="checkbox" <?php echo (in_array($item->id, explode(';', $user->lessons_program))) ? 'checked' : ''; ?> name="lessons_program[]" value="{{  $item->id }}" id="lessons_program{{ $item->id }}"><label for="lessons_program{{ $item->id }}">{{ $item->name }}</label><br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- ------------------------------ -->
+                                <div class="col-sm-12 col-xs-12">
                                     <h4>Стоимость академического часа (45 мин)</h4>
                                 </div>
                                  <div class="col-md-6 col-sm-12 col-xs-12">
@@ -322,8 +366,8 @@
                                     balloonContent: ymaps.geolocation.city,
                                     balloonContentFooter: ymaps.geolocation.region
                                 };
-                                region.val(geoInfo.balloonContentFooter);
-                                city.val(geoInfo.balloonContent);
+                                // region.val(geoInfo.balloonContentFooter);
+                                // city.val(geoInfo.balloonContent);
                                 var myGeocoder = ymaps.geocode(city.val() + " "+ street.val() +" "+ house.val()).then(function (res) {   
                                         
                                     myMap.geoObjects.add(res.geoObjects.get(0));

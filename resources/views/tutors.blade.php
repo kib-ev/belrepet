@@ -148,15 +148,18 @@
                                 <fieldset>
                                     <div class="tg-widget">
                                         <div class="tg-widgettitle tg-paddingtop">
-                                            <h3>Предметы</h3>
+                                            <h3>Предмет</h3>
                                         </div>
                                         <div class="tg-widgetcontent">
                                             <div class="form-group">
                                                 <div class="tg-filterscrollbar tg-themescrollbar tg-subjectcheckbox">
-                                                    @foreach(\App\Entry::where('reference_id', '1')->get() as $subject)
+                                                @foreach(\App\Entry::where('reference_id', '1')->get() as $item)
+                                                        @php
+                                                            $param = 'subject';
+                                                        @endphp
                                                         <span class="tg-checkbox">
-                                                            <input type="checkbox" id="subject{{$subject->id}}" name="subject{{$subject->id}}" value="true" <?php echo $filter->isSubjectActive($subject->id) ? 'checked' : '' ?>>
-                                                            <label for="subject{{$subject->id}}">{{$subject->name}}</label>
+                                                            <input type="checkbox" id="{{ $param . $item->id }}" name="{{ $param . $item->id }}" value="true" <?php echo $filter->isSelected($param, $item->id) ? 'checked' : '' ?>>
+                                                            <label for="{{ $param . $item->id }}">{{ $item->name }}</label>
                                                         </span>
                                                     @endforeach
                                                 </div>
@@ -164,6 +167,99 @@
                                         </div>
                                     </div>
                                 </fieldset>
+
+                                <fieldset>
+                                    <div class="tg-widget">
+                                        <div class="tg-widgettitle tg-paddingtop">
+                                            <h3>Статус репетитора</h3>
+                                        </div>
+                                        <div class="tg-widgetcontent">
+                                            <div class="form-group">
+                                                <div class="tg-filterscrollbar tg-themescrollbar tg-subjectcheckbox">
+                                                    @foreach(\App\Entry::where('reference_id', '2')->get() as $item)
+                                                        @php
+                                                            $param = 'tutor_rank';
+                                                        @endphp
+                                                        <span class="tg-checkbox">
+                                                            <input type="checkbox" id="{{ $param . $item->id }}" name="{{ $param . $item->id }}" value="true" <?php echo $filter->isSelected($param, $item->id) ? 'checked' : '' ?>>
+                                                            <label for="{{ $param . $item->id }}">{{ $item->name }}</label>
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="tg-widget">
+                                        <div class="tg-widgettitle tg-paddingtop">
+                                            <h3>Место проведения занятий</h3>
+                                        </div>
+                                        <div class="tg-widgetcontent">
+                                            <div class="form-group">
+                                                <div class="tg-filterscrollbar tg-themescrollbar tg-subjectcheckbox">
+                                                    @foreach(\App\Entry::where('reference_id', '3')->get() as $item)
+                                                        @php
+                                                            $param = 'tutor_workplaces';
+                                                        @endphp
+                                                        <span class="tg-checkbox">
+                                                            <input type="checkbox" id="{{ $param . $item->id }}" name="{{ $param . $item->id }}" value="true" <?php echo $filter->isSelected($param, $item->id) ? 'checked' : '' ?>>
+                                                            <label for="{{ $param . $item->id }}">{{ $item->name }}</label>
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="tg-widget">
+                                        <div class="tg-widgettitle tg-paddingtop">
+                                            <h3>Вид занятий</h3>
+                                        </div>
+                                        <div class="tg-widgetcontent">
+                                            <div class="form-group">
+                                                <div class="tg-filterscrollbar tg-themescrollbar tg-subjectcheckbox">
+                                                    @foreach(\App\Entry::where('reference_id', '4')->get() as $item)
+                                                        @php
+                                                            $param = 'lessons_type';
+                                                        @endphp
+                                                        <span class="tg-checkbox">
+                                                            <input type="checkbox" id="{{ $param . $item->id }}" name="{{ $param . $item->id }}" value="true" <?php echo $filter->isSelected($param, $item->id) ? 'checked' : '' ?>>
+                                                            <label for="{{ $param . $item->id }}">{{ $item->name }}</label>
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="tg-widget">
+                                        <div class="tg-widgettitle tg-paddingtop">
+                                            <h3>Программа занятий</h3>
+                                        </div>
+                                        <div class="tg-widgetcontent">
+                                            <div class="form-group">
+                                                <div class="tg-filterscrollbar tg-themescrollbar tg-subjectcheckbox">
+                                                    @foreach(\App\Entry::where('reference_id', '5')->get() as $item)
+                                                        @php
+                                                            $param = 'lessons_program';
+                                                        @endphp
+                                                        <span class="tg-checkbox">
+                                                            <input type="checkbox" id="{{ $param . $item->id }}" name="{{ $param . $item->id }}" value="true" <?php echo $filter->isSelected($param, $item->id) ? 'checked' : '' ?>>
+                                                            <label for="{{ $param . $item->id }}">{{ $item->name }}</label>
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
                                 <fieldset>
                                     <div class="tg-widget">
                                         <div class="tg-widgettitle">

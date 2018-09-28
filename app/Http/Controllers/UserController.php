@@ -28,6 +28,15 @@ class UserController extends Controller
         return view('user.profile', compact('user'))->with($meta);
     }
 
+    private function convertArrayToString(array $data) {
+        $result = '';
+        foreach ($data as $item) {
+            $result = $result . $item . ';';
+        }
+
+        return $result;
+    }
+
     public function update(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -35,14 +44,30 @@ class UserController extends Controller
 			if ($data) {
                 unset($data['_token']);
                 unset($data['submit']);
+                
+                if(isset($data['subjects'])) {
+                    $data['subjects'] = $this->convertArrayToString($data['subjects']);
+                };
 
-                $subjectsString = '';
-                if(isset($data['subjects'])) { //todo
-                    foreach ($data['subjects'] as $subject) {
-                        $subjectsString = $subjectsString . $subject . ';';
-                    }
-                }
-                $data['subjects'] = $subjectsString;
+                if(isset($data['tutor_rank'])) {
+                    $data['tutor_rank'] = $this->convertArrayToString($data['tutor_rank']);
+                };
+
+                if(isset($data['tutor_workplaces'])) {
+                    $data['tutor_workplaces'] = $this->convertArrayToString($data['tutor_workplaces']);
+                };
+
+                if(isset($data['lessons_type'])) {
+                    $data['lessons_type'] = $this->convertArrayToString($data['lessons_type']);
+                };
+
+                if(isset($data['lessons_program'])) {
+                    $data['lessons_program'] = $this->convertArrayToString($data['lessons_program']);
+                };
+
+                if(isset($data['birth'])) {
+                    $data['birth'] = date('Y-m-d', strtotime($data['birth']));
+                };
 
                 if(array_key_exists('avatar', $data)) {
                     $path = public_path() . '/uploads/user' . $data['id'];

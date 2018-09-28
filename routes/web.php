@@ -65,24 +65,25 @@ Route::middleware(['auth'])->group(function () {
 //    })->name('tutor-upgrade');
     
     // ADMIN
+
+    Route::prefix('admin')->group(function () {
+       
+        Route::get('/', 'AdminController@dashboard');
+        Route::get('/users', 'AdminController@users')->name('admin_users');
+        Route::patch('/user/{id}', 'UserController@update_user')->name('update_user');
+        
+        Route::get('/news', 'NewsController@index');
+        Route::get('/news/{id}/edit', 'NewsController@edit');
+        Route::patch('/news/{id}/edit', 'NewsController@update');
+        Route::get('/news/add', "NewsController@create");
+        Route::put('/news/add', "NewsController@store");
     
-    Route::get('/admin', 'AdminController@dashboard');
-    Route::get('/admin/users', 'AdminController@users')->name('admin_users');
-    Route::patch('/admin/user/{id}', 'UserController@update_user')->name('update_user');
+        Route::get('/references', "ReferenceController@index");
+        Route::get('/references/show/{id}', "ReferenceController@show")->name('admin_show_reference');
     
-    Route::get('/admin/news', 'NewsController@index');
-    Route::get('/admin/news/{id}/edit', 'NewsController@edit');
-    Route::patch('/admin/news/{id}/edit', 'NewsController@update');
-    Route::get('/admin/news/add', "NewsController@create");
-    Route::put('/admin/news/add', "NewsController@store");
-
-    Route::get('/admin/references', "ReferenceController@index");
-    Route::get('/admin/references/show/{id}', "ReferenceController@show")->name('admin_show_reference');
-
-    Route::put('/admin/entries/store', "EntryController@store")->name('admin_entry_store');
-
+        Route::put('/entries/store', "EntryController@store")->name('admin_entry_store');
+    });
 });
-
 
 Route::get('/registration', function() {
     return view('registration')->with(['title' => 'Вход/Регистрация']);
