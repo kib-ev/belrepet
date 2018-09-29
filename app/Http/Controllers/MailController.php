@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     protected $mailTo = 'info@belrepet.by';
+<<<<<<< HEAD
     protected $mailFrom = 'info@belrepet.by';
+=======
+    protected $mailFrom = 'site@belrepet.by';
+>>>>>>> 6ad7ec3ee6cc291544368ff1896a29ec0fa93303
 
     protected $subject = 'Новое сообщение с сайта';
 

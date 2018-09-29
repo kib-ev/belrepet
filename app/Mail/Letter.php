@@ -22,6 +22,11 @@ class Letter extends Mailable
     public function build()
     {
         return $this->view('emails.default')
+<<<<<<< HEAD
         ->with(['data' => $this->data]);
+=======
+        ->with(['data' => $this->data])
+        ->subject('Новое письмо');
+>>>>>>> 6ad7ec3ee6cc291544368ff1896a29ec0fa93303
     }
 }
