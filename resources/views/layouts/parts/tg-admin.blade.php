@@ -3,7 +3,7 @@
     @guest
     <div class="tg-guest">
         <figure class="tg-adminpic">
-            <a href="#"><img src="/images/icons/icon-01.png" alt="image description"></a>
+        <a href="{{ url('/user/dashboard') }}"><img src="{{ url('/images/icons/icon-01.png') }}" alt=""></a>
         </figure>
         <div class="tg-message">
             <em>Привет, Гость!</em>
