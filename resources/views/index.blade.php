@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <form class="tg-formsearch">
+                    {!! Form::open(['id' => 'repet-form','url' => 'sendmail', 'method' => 'post', 'class' => 'tg-formsearch']) !!}
                         <fieldset>
                             <figure class="tg-bannerimg hidden-sm hidden-xs">
                                 <img src="{{ url('/images/knigi.png') }}" alt="">
@@ -27,17 +27,17 @@
                                         <div class="form-group">
                                             <label>Тема :</label>
                                             <div class="tg-textarea">
-                                                <textarea name="desc" id="" placeholder="Что планируете изучать, как часто и какая цель занятий?"></textarea>
+                                                {!! Form::textarea('desc', '', ['class' => 'clear', 'placeholder' => 'Что планируете изучать, как часто и какая цель занятий?']) !!}<br>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  
                                 </div> 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Ваше имя :</label>
                                             <div class="tg-text">
-                                                <input name="name" type="text">
+                                                {!! Form::text('name','' , ['class' => 'clear']) !!}<br>
                                             </div>
                                         </div>
                                     </div>
@@ -45,14 +45,15 @@
                                         <div class="form-group">
                                             <label>Ваш телефон :</label>
                                             <div class="tg-text">
-                                                <input name="phone" type="text">
+                                                {!! Form::text('phone','' , ['class' => 'clear']) !!}<br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <button type="submit" class="tg-btn">Подберите мне репетитора</button>
+                                    {!! Form::submit('Подберите мне репетитора', ['class' => 'tg-btn']) !!}<br>
+                                    
                                 </div>
                                 <div class="tg-loginbanner">
                                     <div class="tg-box">
@@ -66,7 +67,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -467,3 +468,45 @@
         Main End
 *************************************-->
 @endsection
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        var working = true;
+        var form = $('#repet-form');
+
+        form.on('submit',function(event) {
+            event.preventDefault() ;
+
+            if (working) {
+                working = false;
+                
+                send_form(form);
+            } 
+        });
+
+        function send_form(form) {
+
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(), 
+                success: function(response) {
+                    alert("Ваше сообщение успешно отправлено"); 
+                    clear_form(form);
+                    
+                },
+                error: function() {
+                    alert("Ошибка при отправке сообщения");
+                }
+            });
+        }
+
+        function clear_form(form) {
+            form.find('.clear').val('');
+            working = true;
+        }
+    });
+</script>
