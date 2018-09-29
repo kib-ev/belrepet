@@ -133,12 +133,13 @@
                                 <br>
                                 <span>Будьте в курсе последний изменений и нововведений нашего сервиса!</span>
                             </div>
-                            <form class="tg-newsletter" action="index_submit" method="post" enctype="text/plain">
+
+                            {!! Form::open(['url' => 'sendmail', 'method' => 'post', 'class' => 'tg-newsletter']) !!}
                                 <fieldset>
-                                    <input type="email" class="form-control" name="email" placeholder="Email">
+                                    {{ Form::email('email', '', ['class' => 'form-control clear', 'placeholder' => 'Email']) }}<br>
                                     <button type="submit"><i class="fa fa-check"></i></button>
                                 </fieldset>
-                            </form>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
@@ -239,6 +240,41 @@ $(document).ready(function(){
        });
 
 });
+</script>
+<script>
+    $(document).ready(function() {
+        var working = true; // защита от повторной отправки
+
+        $('form').on('submit',function(event) {
+            event.preventDefault() ;
+
+            if (working) {
+                working = false;
+                
+                send_form($(this));
+            } 
+        });
+
+        function send_form(form) {
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(), 
+                success: function(response) {
+                    alert("Ваше сообщение успешно отправлено"); 
+                    clear_form(form);
+                },
+                error: function() {
+                    alert("Ошибка при отправке сообщения");
+                }
+            });
+        }
+
+        function clear_form(form) {
+            form.find('.clear').val('');
+            working = true;
+        }
+    });
 </script>
 </body>
 </html>

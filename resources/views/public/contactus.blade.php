@@ -32,26 +32,27 @@
                     </div>
                 </div>
                 <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12">
-                    <form class="tg-themeform tg-formcontactus">
+                    <form class="tg-themeform tg-formcontactus" action="sendmail" method="post">
+                        @csrf
                         <fieldset>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="text" class="form-control" placeholder="Ваше имя *">
+                                        <input type="text" name="name" class="form-control clear" placeholder="Ваше имя *">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="mobile" class="form-control" placeholder="Телефон *">
+                                        <input type="text" name="phone" class="form-control clear" placeholder="Телефон *">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="E-mail *">
+                                        <input type="email" name="email" class="form-control clear" placeholder="E-mail *">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="text" class="form-control" placeholder="Тема *">
+                                        <input type="text" name="subject" class="form-control clear" placeholder="Тема *">
                                     </div>
-                                </div>
+                                </div>  
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <textarea placeholder="Сообщение *"></textarea>
+                                        <textarea name="message" placeholder="Сообщение *" class="clear"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

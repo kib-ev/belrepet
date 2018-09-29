@@ -21,7 +21,8 @@ class MailController extends Controller
         return redirect()->back()->withErrors(['msg' => 'ok'])->withInput();
     }
 
-    public function send_mail_ajax() {
+    public function send_mail_ajax() 
+    {
         $data = request()->all();
         $this->sendMail($data);
 
