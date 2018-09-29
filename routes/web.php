@@ -43,29 +43,8 @@ Route::middleware(['auth'])->group(function () {
         return view('user.offer')->with($meta);
     })->name('user-offer');
     
-
-//    Route::get('/user/schedule', function() {
-//        return view('user.schedule')->with(['title' => 'Расписание']);
-//    })->name('tutor-schedule');
-//
-//    Route::get('/user/schedule', function() {
-//        return view('user.schedule')->with(['title' => 'Расписание']);
-//    })->name('tutor-schedule');
-//
-//    Route::get('/user/favorites', function() {
-//        return view('user.favorites')->with(['title' => 'Избранное']);
-//    })->name('tutor-favorites');
-//
-//    Route::get('/user/invoices', function() {
-//        return view('user.invoices')->with(['title' => 'Счета']);
-//    })->name('tutor-invoices');
-//
-//    Route::get('/user/upgrade', function() {
-//        return view('user.upgrade')->with(['title' => 'Тарифы']);
-//    })->name('tutor-upgrade');
     
     // ADMIN
-
     Route::prefix('admin')->group(function () {
        
         Route::get('/', 'AdminController@dashboard');
@@ -79,12 +58,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/news/add', "NewsController@store");
     
         Route::get('/references', "ReferenceController@index");
-        Route::get('/references/show/{id}', "ReferenceController@show")->name('admin_show_reference');
+        Route::get('/references/show/{id}', "ReferenceController@show")
+            ->name('admin_show_reference');
     
-        Route::put('/entries/store', "EntryController@store")->name('admin_entry_store');
+        Route::put('/entries/store', "EntryController@store")
+            ->name('admin_entry_store');
     });
 });
 
 Route::get('/registration', function() {
     return view('registration')->with(['title' => 'Вход/Регистрация']);
 })->name('registration');
+
+Route::post('/sendmail', 'MailController@send_mail')->name('send_mail_ajax');
