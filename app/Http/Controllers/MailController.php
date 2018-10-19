@@ -13,7 +13,7 @@ class MailController extends Controller
 
     protected $subject = 'Новое сообщение с сайта';
 
-    public function send_mail() 
+    public function send_mail()
     {
         $data = request()->all();
         $this->sendMail($data);
@@ -21,7 +21,7 @@ class MailController extends Controller
         return redirect()->back()->withErrors(['msg' => 'ok'])->withInput();
     }
 
-    public function send_mail_ajax() 
+    public function send_mail_ajax()
     {
         $data = request()->all();
         $this->sendMail($data);
@@ -29,7 +29,8 @@ class MailController extends Controller
         return ['status' => 'ok'];
     }
 
-    private function sendMail($data) {
+    private function sendMail($data)
+    {
         $letter = new Letter($data);
         $letter->subject($this->subject);
         $letter->from($this->mailFrom);
