@@ -45,8 +45,10 @@ Route::middleware(['auth'])->group(function () {
     
     
     // ADMIN
-    Route::prefix('admin')->group(function () {
-       
+    // для префикса группы возможен еще такой вариант записи
+    // Route::prefix('admin')->group(function () { });
+    Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
+
         Route::get('/', 'AdminController@dashboard');
         Route::get('/users', 'AdminController@users')->name('admin_users');
         Route::patch('/user/{id}', 'UserController@update_user')->name('update_user');

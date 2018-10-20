@@ -245,7 +245,7 @@ $(document).ready(function(){
     $(document).ready(function() {
         var working = true; // защита от повторной отправки
 
-        $('form').on('submit',function(event) {
+        $('form.tg-newsletter, form.tg-formcontactus, form.tg-formsearch').on('submit',function(event) {
             event.preventDefault() ;
 
             if (working) {

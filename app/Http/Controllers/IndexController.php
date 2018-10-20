@@ -14,9 +14,7 @@ class IndexController extends Controller
         $content['message'] = 'content';
         $content['news'] = \App\News::paginate(3);
         
-        $users = \App\User::where('joinas', 'tutor')
-                ->where('active', 'true')
-                ->paginate(6);
+        $users = \App\User::activeTutors(6);
         
         return view('index', compact('users'))->with($content);
     }

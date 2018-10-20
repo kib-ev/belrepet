@@ -17,8 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 
-        'lastname', 
+        'firstname',
+        'lastname',
         'patronymic',
         'gender',
         'birth',
@@ -26,8 +26,8 @@ class User extends Authenticatable
         'skype',
         'site',
         'price',
-        'joinas', 
-        'email', 
+        'joinas',
+        'email',
         'password',
         
         'country',
@@ -58,14 +58,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function mapAddress() {
+    public function mapAddress()
+    {
         if ($this->city && $this->street && $this->house) {
             $this->mapAddress = $this->city . " " . $this->street . " " . $this->house;
         }
         return $this->mapAddress ? $this->mapAddress : "";
     }
     
-    public function avatar() {
+    public function avatar()
+    {
         if ($this->avatar) {
             return URL::to('/').'/uploads/user'.$this->id.'/'.$this->avatar;
         } else {
@@ -73,37 +75,56 @@ class User extends Authenticatable
         }
     }
     
-    public function link() {
+    public function link()
+    {
         return route('tutor_page', $this->id);
     }
     
-    public function subjects() {
-        $entries = Entry::where('reference_id', '1')->whereIn('id', explode(';', $this->subjects));
+    public function subjects()
+    {
+        $entries = Entry::where('reference_id', '1')
+            ->whereIn('id', explode(';', $this->subjects));
+
         return $entries;
     }
 
-    public function ranks() {
-        $entries = Entry::where('reference_id', '2')->whereIn('id', explode(';', $this->tutor_rank));;
+    public function ranks()
+    {
+        $entries = Entry::where('reference_id', '2')
+            ->whereIn('id', explode(';', $this->tutor_rank));
+
         return $entries;
     }
 
-    public function workplaces() {
-        $entries = Entry::where('reference_id', '3')->whereIn('id', explode(';', $this->tutor_workplaces));
+    public function workplaces()
+    {
+        $entries = Entry::where('reference_id', '3')
+            ->whereIn('id', explode(';', $this->tutor_workplaces));
+        
         return $entries;
     }
 
-    public function lessons() {
-        $entries = Entry::where('reference_id', '4')->whereIn('id', explode(';', $this->lessons_type));
+    public function lessons()
+    {
+        $entries = Entry::where('reference_id', '4')
+            ->whereIn('id', explode(';', $this->lessons_type));
+        
         return $entries;
     }
 
-
-    public function subjectsArray() {
-
+    public function subjectsArray()
+    {
         $subjectsArray = [];
         foreach ($this->subjects()->get() as $subject) {
             array_push($subjectsArray, $subject->name);
         }
         return $subjectsArray;
+    }
+
+    public static function activeTutors($paginate, $filter = null)
+    {
+        return \App\User::where('joinas', 'tutor')
+            ->where('active', '1')
+            ->paginate($paginate);
     }
 }
