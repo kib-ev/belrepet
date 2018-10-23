@@ -26,10 +26,11 @@ Route::get('/centry', function() {
     return view('tuition-centers')->with(['title' => 'Центры обучения']);
 })->name('tuition-centers');
 
-// account
+// AUTH
+// раздел сайта для авторизованных пользователей
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/user/dashboard', function() {
+    Route::get('/user/dashboard', function() { // TODO dashboard
         return redirect('/user/profile');
     })->name('tutor-dashboard');
     
