@@ -5,7 +5,7 @@
             Inner Banner Start
     *************************************-->
 <div id="tg-innerbanner" class="tg-innerbanner tg-haslayout tg-parallaximg" data-appear-top-offset="600"
-     data-parallax="scroll" data-image-src="images/parallax/bgparallax-07.jpg">
+     data-parallax="scroll" data-image-src="{{ url('images/parallax/bgparallax-07.jpg') }}">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-xs-12">

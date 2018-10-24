@@ -11,6 +11,7 @@
             <div class="modal-body">
                 <form class="tg-themeform tg-formsendmessage" action="{{ url('/') }}/sendmail" method="post">
                     @csrf
+                    <input type="hidden" name="from_url" value="{{ url()->current() }}">
                     <fieldset>
                         <div class="form-group">
                             <input type="text" name="name" class="form-control clear" placeholder="Ваше имя *" autocomplete="off">

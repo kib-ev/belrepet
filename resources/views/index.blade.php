@@ -212,7 +212,7 @@
                             </figure>
                             <div class="tg-tutorinfo">
                                 <div class="tg-jobhead">
-                                    <span class="tg-priceperhour">{{ $user->price }}$ <em>За час</em></span>
+                                    <span class="tg-priceperhour">{{ $user->price }}$ <em>За 45 мин</em></span>
                                     <h3><a href="{{$user->link()}}">{{ $user->firstname }} {{ $user->patronymic }}</a></h3>
                                     <div class="tg-subjects">{{ implode(', ',$user->subjectsArray()) }}</div>
                                     <ul class="tg-jobsmetadata hidden todo">
@@ -237,7 +237,7 @@
                         
                     </div>
                     <div class="tg-btns">
-                        <a class="tg-btn" href="/repetitory">перейти в каталог</a>
+                        <a class="tg-btn" href="{{ url('/repetitory') }}">перейти в каталог</a>
                     </div>
                 </div>
             </div>
