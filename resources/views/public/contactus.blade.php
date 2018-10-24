@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12">
-                    <form class="tg-themeform tg-formcontactus" action="sendmail" method="post">
+                    <form class="tg-themeform tg-formcontactus" action="{{ url('/') }}/sendmail" method="post">
                         @csrf
                         <fieldset>
                             <div class="row">

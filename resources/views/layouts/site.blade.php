@@ -196,6 +196,8 @@
     <!--************************************
             Footer End
     *************************************-->
+    
+    @include('public/parts/modal')
 </div>
 <!--************************************
      Wrapper End
@@ -205,7 +207,7 @@
 <script src="{{ asset('js/bootstrap-add-clear.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
 <script src="{{ asset('js/mapclustering/data.json') }}"></script>
-<script src="{{ asset('http://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=ru') }}"></script>
+<script src="{{ asset('https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=ru') }}"></script>
 <script src="{{ asset('js/mapclustering/markerclusterer.min.js') }}"></script>
 <script src="{{ asset('js/mapclustering/infobox.js') }}"></script>
 <script src="{{ asset('js/mapclustering/map.js') }}"></script>
@@ -222,59 +224,9 @@
 <script src="{{ asset('js/gmap3.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
-<script>
-    jQuery(document).ready(function(e) {
-        if ($('#tg-map').length > 0) {
-            tutor_init_map_script();
-        }
-    });
-</script>
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=6wuwpkxe51rax9p440knv1wonsjxqza58uc24nwvahiac6m3"></script>
-<script>
-$(document).ready(function(){
-   tinymce.init({ 
-       selector:'textarea.editor',
-       language_url : '/libs/tinymce/langs/ru.js',
-        menubar: 'false',
-//        toolbar: 'false'
-       });
 
-});
-</script>
-<script>
-    $(document).ready(function() {
-        var working = true; // защита от повторной отправки
+<script src="{{ asset('js/custom.js') }}"></script>
 
-        $('form.tg-newsletter, form.tg-formcontactus, form.tg-formsearch').on('submit',function(event) {
-            event.preventDefault() ;
-
-            if (working) {
-                working = false;
-                
-                send_form($(this));
-            } 
-        });
-
-        function send_form(form) {
-            $.ajax({
-                type: 'POST',
-                url: form.attr('action'),
-                data: form.serialize(), 
-                success: function(response) {
-                    alert("Ваше сообщение успешно отправлено"); 
-                    clear_form(form);
-                },
-                error: function() {
-                    alert("Ошибка при отправке сообщения");
-                }
-            });
-        }
-
-        function clear_form(form) {
-            form.find('.clear').val('');
-            working = true;
-        }
-    });
-</script>
 </body>
 </html>

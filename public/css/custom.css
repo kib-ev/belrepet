@@ -1,3 +1,58 @@
 .form-group label {
     display: inline-block;
 }
+.tg-widgetcontent .send-message {
+    padding: 0px 10px;
+    font-size: 0.9em;
+}
+#sendMessageTutor {
+    z-index: 2000 !important;
+}
+#tg-content {
+    z-index: 1 !important;
+}
+.tg-header {
+    z-index: 2 !important;
+}
+
+* {
+    outline: none !important;
+}
+/* modal */
+.modal-content {
+    border-radius: 0px;
+}
+.modal-content .modal-title {
+    display: inline-block;
+}
+.modal-content .close {
+    padding: 1rem;
+    margin: -1rem -1rem -1rem auto;
+    float: right;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    display: inline-block;
+}
+.modal-content .modal-body {
+    overflow: auto;
+}
+.modal-content .modal-body textarea {
+    height: 150px;
+}
+.modal-content .modal-body .form-group:last-of-type {
+    margin-bottom: 0px;
+}
+.modal-content .modal-footer {
+    text-align: center;
+}
+.tg-btn-close {
+    border-color: #828282;
+    color: #828282;
+}
+.tg-btn-close:hover {
+    background: #828282 !important;
+}

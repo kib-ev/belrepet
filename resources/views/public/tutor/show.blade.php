@@ -7,7 +7,7 @@
             <div class="col-sm-12 col-xs-12">
                 <div class="tg-innerbannercontent">
                     <div class="tg-jobhead">
-                        <span class="tg-priceperhour">{{ $user->price}}$ <em>За час</em></span>
+                        <span class="tg-priceperhour">{{ $user->price}}$ <em>За 45 мин</em></span>
                         <h1>{{ $user->firstname}} {{ $user->patronymic}}</h1>
                         <span class="tg-tutioncategory">{{ implode(', ',$user->subjectsArray()) }}</span>
                         <ul class="tg-jobsmetadata todo" style="opacity: 0;">
@@ -76,6 +76,13 @@
                                 <a href="#" class="tg-btn hidden todo">get direction</a>
                             </div>
                         </div>
+                        <div class="tg-widget tg-widgetacadmeyurl">
+                            <div class="tg-widgetcontent">
+                                <a href="" class="tg-btn send-message" data-toggle="modal" data-target="#sendMessageTutor">Отправить сообщение</a>
+                            </div>
+                        </div>
+                        
+                        
                         @if($user->birth != '')
                         <div class="tg-widget tg-widgetacadmeyurl">
 
@@ -89,6 +96,7 @@
 
                         </div>
                         @endif
+                        
                         @if(isset($user->activity_from))
                         <div class="tg-widget tg-widgetacadmeyurl">
                             <div class="tg-widgettitle">
@@ -209,7 +217,7 @@
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
                         <div class="tg-jobhead">
-                            <span class="tg-priceperhour">{{ $user->price}}$ <em>За час</em></span>
+                            <span class="tg-priceperhour">{{ $user->price}}$ <em>За 45 мин</em></span>
                             <h1>{{ $user->firstname}} {{ $user->patronymic}}</h1>
                             <span class="tg-tutioncategory">{{ implode(', ',$user->subjectsArray()) }}</span>
                             <ul class="tg-jobsmetadata todo" style="opacity: 0;">
